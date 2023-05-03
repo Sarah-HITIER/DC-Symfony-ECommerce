@@ -1,0 +1,77 @@
+app:
+    title: "Bienvenue à Crazy Donuts !"
+    navbar:
+        super-admin: "Super Admin"
+        account: "Mon compte"
+        logout: "Déconnexion"
+        login: "Connexion"
+    actions:
+        show: "Voir"
+        edit: "Modifier"
+        delete: "Supprimer"
+        back: "Retour"
+        save: "Enregistrer"
+    errors:
+        no-items: "Aucun élément trouvé"
+        img-not-valid: "Téléchargez un format d'image valide (jpg, jpeg, png)"
+        page-not-found: "Page non trouvée"
+        access-denied: "Accès refusé"
+        server-error: "Erreur serveur"
+        error-occured: "Une erreur est survenue"
+
+product:
+    title: "Liste des produits"
+    stock: "Plus que %nb% en stock !"
+    stock-out: "Rupture de stock"
+    new: "Créer un nouveau produit"
+
+cart:
+    title: "Mon panier"
+    validate: "Valider mon panier"
+    out-of-stock: "Les produits suivants ne sont pas en stock : %products%"
+    empty: "Votre panier est vide"
+
+account:
+    title: "Mon compte"
+    historical: "Historique de mes commandes"
+
+order:
+    title: "Commande #%nb%"
+    date: "Commande du %date%"
+
+super-admin:
+    title: "Administration"
+    carts: "Paniers en cours"
+    new-users: "Nouveaux utilisateurs"
+
+login:
+    title: "Connectez-vous"
+    no-account: "Pas encore de compte ?"
+    new-account: "Créer un compte"
+    connection: "Connexion"
+
+register:
+    title: "Créez votre compte"
+    already-account: "Déjà un compte ?"
+    login: "Se connecter"
+
+Id: Id
+Name: Nom
+Description: Description
+Image: Image
+Price: Prix
+Stock: Stock
+Actions: Actions
+Firstname: Prénom
+Email: Email
+Password: Mot de passe
+Plain password: Mot de passe
+Agree terms: J'accepte les conditions générales d'utilisation
+Product: Produit
+United price: Prix unitaire
+Quantity: Quantité
+Total price: Prix total
+Date: Date
+User: Utilisateur
+Content: Contenu du panier
+Register date: Date d'inscription

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CartContentsRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CartContentsRepository::class)]
 class CartContents
@@ -23,10 +24,17 @@ class CartContents
     private ?Cart $cart = null;
 
     #[ORM\Column]
+    #[Assert\Type('integer')]
+    #[Assert\PositiveOrZero]
     private ?int $quantity = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $date = null;
+
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     public function getId(): ?int
     {

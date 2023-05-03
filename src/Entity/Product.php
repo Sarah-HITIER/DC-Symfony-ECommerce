@@ -7,7 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
+#[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
 {
@@ -17,15 +19,25 @@ class Product
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'The product name must be at least {{ limit }} characters long',
+        maxMessage: 'The product name cannot be longer than {{ limit }} characters',
+    )]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
     #[ORM\Column]
+    #[Assert\PositiveOrZero]
     private ?float $price = null;
 
     #[ORM\Column]
+    #[Assert\Type('integer')]
+    #[Assert\PositiveOrZero]
     private ?int $stock = null;
 
     #[ORM\Column(length: 50, nullable: true)]
@@ -102,6 +114,18 @@ class Product
         $this->image = $image;
 
         return $this;
+    }
+
+    /**
+     * Delete image file when product is deleted
+     */
+    #[ORM\PostRemove]
+    public function deleteImage()
+    {
+        if ($this->image) {
+            unlink(__DIR__ . '/../../public/uploads/' . $this->image);
+        }
+        return true;
     }
 
     /**

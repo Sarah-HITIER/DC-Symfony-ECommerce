@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>{{ 'account.title'|trans }}</h1>
+	{{ form(edit) }}
+
+		<h1>{{ 'account.historical'|trans }}</h1>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>{{ 'Id'|trans }}</th>
+					<th>{{ 'Total price'|trans }}</th>
+					<th>{{ 'Date'|trans }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for order in orders %}
+					<tr>
+						<td>
+							<a href="{{ path('app_account_order_detail', {'id': order.id}) }}">{{ order.id }}</a>
+						</td>
+						{% set total = 0 %}
+						{% for contenu in order.cartContents %}
+							{% set total = total + (contenu.product.price * contenu.quantity) %}
+						{% endfor %}
+						<td>{{ total }}€</td>
+						<td>{{ order.purchaseDate|date('d/m/Y') }}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	{% endblock %}

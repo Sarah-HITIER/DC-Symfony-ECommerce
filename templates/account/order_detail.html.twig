@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'order.title'|trans({'%nb%':order.id}) }}
+{% endblock %}
+
+{% block body %}
+	<h1>{{ 'order.title'|trans({'%nb%':order.id}) }}</h1>
+	{% include "order_contents.html.twig" with {"order": order} %}
+	<p>{{ 'order.date'|trans({'%date%': order.purchaseDate|date("d/m/y")}) }}</p>
+{% endblock %}

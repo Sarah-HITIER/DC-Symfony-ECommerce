@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'super-admin.title'|trans }}
+{% endblock %}
+
+{% block body %}
+	<h2>{{ 'super-admin.carts'|trans }}</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>{{ 'Id'|trans }}</th>
+				<th>{{ 'User'|trans }}</th>
+				<th>{{ 'Content'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for cart in carts %}
+				<tr>
+					<td>{{ cart.id }}</td>
+					<td>{{ cart.user.email }}</td>
+					<td>
+						<ul>
+							{% for content in cart.cartContents %}
+								<li>{{ content.product.name }}
+									x
+									{{ content.quantity }}</li>
+							{% endfor %}
+						</ul>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3">{{ 'app.errors.no-items'|trans }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<h2>{{ 'super-admin.new-users'|trans }}</h2>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>{{ 'Name'|trans }}</th>
+				<th>{{ 'Email'|trans }}</th>
+				<th>{{ 'Register date'|trans }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for user in users %}
+				<tr>
+					<td>{{ user }}</td>
+					<td>{{ user.email }}</td>
+					<td>{{ user.registrationDate|date('d/m/Y H:i') }}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

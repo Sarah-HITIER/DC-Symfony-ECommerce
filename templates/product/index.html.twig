@@ -1,43 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Product index{% endblock %}
-
 {% block body %}
-    <h1>Product index</h1>
+	<h1>{{ 'app.title'|trans }}</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>Stock</th>
-                <th>Image</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            <tr>
-                <td>{{ product.id }}</td>
-                <td>{{ product.name }}</td>
-                <td>{{ product.description }}</td>
-                <td>{{ product.price }}</td>
-                <td>{{ product.stock }}</td>
-                <td>{{ product.image }}</td>
-                <td>
-                    <a href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
-                    <a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="7">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<div class="row">
+		{% for product in products %}
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="row g-0">
+						<div class="col-sm-4">
+							{% if product.image is not null %}
+								<img src="{{ asset('/uploads/'~ product.image) }}" alt="{{ product.name }}" class="img-fluid rounded-start" style="max-height: 300px; object-fit: contain;">
+							{% endif %}
+						</div>
+						<div class="col-sm-8">
+							<div class="card-body">
+								<h5 class="card-title">{{ product.name }}</h5>
+								<p class="card-text">{{ product.description }}</p>
+								<p class="card-text text-primary">{{ product.price }}€</p>
+								{% if product.stock > 0 %}
+									<p class="card-text">{{ 'product.stock'|trans({'%nb%':product.stock}) }}</p>
+								{% else %}
+									<p class="card-text text-danger">{{ 'product.stock-out'|trans }}</p>
+								{% endif %}
+								<a href="{{ path('app_product_show', {'id': product.id}) }}" class="btn btn-primary">{{ 'app.actions.show'|trans }}</a>
+								{% if is_granted('ROLE_ADMIN') %}
+									<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btn btn-light">{{ 'app.actions.edit'|trans }}</a>
+									<a href="{{ path('app_product_delete', {'id': product.id}) }}" class="btn btn-danger">{{ 'app.actions.delete'|trans }}</a>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<p>{{ 'app.errors.no-items'|trans }}</p>
+		{% endfor %}
+	</div>
 
-    <a href="{{ path('app_product_new') }}">Create new</a>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('app_product_new') }}" class="btn btn-primary">{{ 'product.new'|trans }}</a>
+	{% endif %}
 {% endblock %}

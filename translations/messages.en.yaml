@@ -1,0 +1,77 @@
+app:
+    title: "Welcome to Crazy Donuts!"
+    navbar:
+        super-admin: "Super Admin"
+        account: "My Account"
+        logout: "Logout"
+        login: "Login"
+    actions:
+        show: "Show"
+        edit: "Edit"
+        delete: "Delete"
+        back: "Back"
+        save: "Save"
+    errors:
+        no-items: "No items found"
+        img-not-valid: "Upload a valid image format (jpg, jpeg, png)"
+        page-not-found: "Page not found"
+        access-denied: "Access denied"
+        server-error: "Server error"
+        error-occured: "An error occurred"
+
+product:
+    title: "List of Products"
+    stock: "Only %nb% left in stock!"
+    stock-out: "Out of stock"
+    new: "Create a new product"
+
+cart:
+    title: "My Cart"
+    validate: "Validate my cart"
+    out-of-stock: "The following products are out of stock: %products%"
+    empty: "Your cart is empty"
+
+account:
+    title: "My Account"
+    historical: "History of my orders"
+
+order:
+    title: "Order #%nb%"
+    date: "Order of %date%"
+
+super-admin:
+    title: "Administration"
+    carts: "Current Carts"
+    new-users: "New Users"
+
+login:
+    title: "Log in"
+    no-account: "Don't have an account yet?"
+    new-account: "Create an account"
+    connection: "Connection"
+
+register:
+    title: "Create your account"
+    already-account: "Already have an account?"
+    login: "Log in"
+
+Id: Id
+Name: Name
+Description: Description
+Image: Image
+Price: Price
+Stock: Stock
+Actions: Actions
+Firstname: Firstname
+Email: Email
+Password: Password
+Plain password: Password
+Agree terms: I agree to the terms and conditions
+Product: Product
+United price: Unit Price
+Quantity: Quantity
+Total price: Total Price
+Date: Date
+User: User
+Content: Cart content
+Register date: Registration date

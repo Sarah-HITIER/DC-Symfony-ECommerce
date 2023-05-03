@@ -1,0 +1,18 @@
+.navbar {
+    background-color: #ffefd5;
+}
+
+.app-container {
+    padding-top: 150px;
+}
+
+img.product-image {
+    max-width: 45%;
+    padding-right: 16px;
+}
+
+.payment-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

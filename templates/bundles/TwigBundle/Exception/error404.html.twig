@@ -1,13 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	{{ 'product.new'|trans }}
-
-{% endblock %}
-
 {% block body %}
-	<h1>{{ 'product.new'|trans }}</h1>
-	{{ form(add) }}
-	
+	<h1>{{ 'app.errors.page-not-found'|trans }}</h1>
 	<a href="{{ path('app_product_index') }}" class="btn btn-light">{{ 'app.actions.back'|trans }}</a>
 {% endblock %}

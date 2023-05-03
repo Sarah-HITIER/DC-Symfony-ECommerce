@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello StripeController!
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="{{asset('css/index.css')}}"/>
+	<link rel="stylesheet" href="{{asset('css/checkout.css')}}"/>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://js.stripe.com/v3/"></script>
+	<script src="{{asset('js/checkout.js')}}" defer></script>
+{% endblock %}
+
+
+{% block body %}
+	<div class="payment-container">
+		<form id="payment-form">
+			<div
+				id="link-authentication-element"><!--Stripe.js injects the Link Authentication Element-->
+			</div>
+			<div
+				id="payment-element"><!--Stripe.js injects the Payment Element-->
+			</div>
+			<button id="submit">
+				<div class="spinner hidden" id="spinner"></div>
+				<span id="button-text">Pay now</span>
+			</button>
+			<div id="payment-message" class="hidden"></div>
+		</form>
+	</div>
+{% endblock %}

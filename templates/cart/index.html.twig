@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'cart.title'|trans }}
+{% endblock %}
+
+{% block body %}
+	<h1>{{ 'cart.title'|trans }}</h1>
+
+	{% if cart and cart.cartContents %}
+		{% include "order_contents.html.twig" with {"order": cart} %}
+
+		{% set outOfStocksProducts = [] %}
+		{% for contenu in cart.cartContents %}
+			{% if contenu.product.stock < contenu.quantity %}
+				{% set outOfStocksProducts = outOfStocksProducts|merge([contenu.product.name]) %}
+			{% endif %}
+		{% endfor %}
+
+		{% if outOfStocksProducts|length == 0 %}
+			<a class="btn btn-primary" href="{{ path('app_stripe') }}">{{ 'cart.validate'|trans }}</a>
+
+		{% else %}
+			<p class="text-danger">
+				{{'cart.out-of-stock'|trans({'%products%': outOfStocksProducts|join(', ')})}}</p>
+		{% endif %}
+
+	{% else %}
+		<p>{{ 'cart.empty'|trans }}</p>
+	{% endif %}
+{% endblock %}

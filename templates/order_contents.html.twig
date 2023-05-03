@@ -1,0 +1,40 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>{{ 'Product'|trans }}</th>
+			<th>{{ 'United price'|trans }}</th>
+			<th>{{ 'Quantity'|trans }}</th>
+			<th>{{ 'Total price'|trans }}</th>
+			{% if order.state == false %}
+				<th>{{ 'Actions'|trans }}</th>
+			{% endif %}
+		</tr>
+	</thead>
+	<tbody>
+		{% set total = 0 %}
+		{% for contenu in order.cartContents %}
+			<tr>
+				<td>{{ contenu.product.name }}</td>
+				<td>{{ contenu.product.price }}
+					€</td>
+				<td>{{ contenu.quantity }}</td>
+				<td>{{ contenu.product.price * contenu.quantity }}
+					€</td>
+				{% if order.state == false %}
+					<td>
+						<a href="{{ path('app_cart_remove', {id: contenu.product.id}) }}" class="btn btn-danger">{{ 'app.actions.delete'|trans }}</a>
+
+					</td>
+				{% endif %}
+			</tr>
+			{% set total = total + (contenu.product.price * contenu.quantity) %}
+		{% endfor %}
+		<tr>
+			<td colspan="3" class="text-right">{{ 'Total price'|trans }}
+				:</td>
+			<td class="text-primary">{{ total }}
+				€</td>
+		</tr>
+
+	</tbody>
+</table>
